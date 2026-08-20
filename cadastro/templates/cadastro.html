@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+</head>
+<body>
+    <h2>Criar Conta</h2>
+
+    <header>
+        <!-- Link do Django que direciona de volta para a rota 'home' -->
+        <a href="{% url 'app' %}" class="back-btn">← Voltar para loja</a>
+    </header>
+
+    {% if erro %}
+    <p style="color:red">{{ erro }}</p>
+{% endif %}
+
+{% if sucesso %}
+    <p style="color:green">{{ sucesso }}</p>
+{% endif %}
+
+    <form method="POST" action="{% url 'cadastro' %}">
+        {% csrf_token %}
+        
+        <label>Usuário:</label><br>
+        <input type="text" name="usuario" required><br><br>
+
+        <label>E-mail:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Senha:</label><br>
+        <input type="password" name="password" required><br><br>
+
+        <label>Confirmar Senha:</label><br>
+        <input type="password" name="confirm_password" required><br><br>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <p>Já possui conta? <a href="{% url 'login' %}">Entrar</a></p>
+</body>
+</html>
